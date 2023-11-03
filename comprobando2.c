@@ -22,12 +22,12 @@ typedef struct string_buffer_s
 static void string_buffer_initialize(string_buffer_t *sb)
 {
   sb->len = 0;
-  sb->ptr = NULL;  // Inicializa el puntero a NULL
+  sb->ptr = NULL; 
 }
 
 static void string_buffer_finish(string_buffer_t *sb)
 {
-  if (sb->ptr)  // Verifica si el puntero no es nulo antes de liberarlo
+  if (sb->ptr)  
   {
     free(sb->ptr);
     sb->len = 0;
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
   CURL *curl;
   CURLcode res;
   string_buffer_t strbuf, strbuf2, strbuf3;
-  char *api_telegram_consulta = "https://api.telegram.org/bot6866775472:AAEdyyIPrr43qHaiNzolzWlU_SJgSgjGwA8/getUpdates"; 
+  char *api_telegram_consulta = "https://api.telegram.org/bot<TOKEN>/getUpdates"; 
   char *api_nasa_apod = "https://api.nasa.gov/planetary/apod?api_key=galEbCY2LUiHOaWbt9Mkwqy1JBhZc4sQvxkVDM1S"; 
   string_buffer_initialize(&strbuf);
   string_buffer_initialize(&strbuf2);
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
              str_cambio(strbuf2.ptr, '}', ' ');
              str_cambio(strbuf2.ptr, ',', ' ');
             // Enviar la respuesta de la API de la NASA a través de Telegram
-            const char *telegram_api_url = "https://api.telegram.org/bot6866775472:AAEdyyIPrr43qHaiNzolzWlU_SJgSgjGwA8/sendMessage";
+            const char *telegram_api_url = "https://api.telegram.org/bot<TOKEN>/sendMessage";
             CURL *curl_telegram = curl_easy_init();
             printf("Enviando mensaje a Telegram: %s\n", strbuf2.ptr);
             if (curl_telegram)
